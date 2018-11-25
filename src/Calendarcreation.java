@@ -21,73 +21,14 @@ public class Calendarcreation {
         }
     }
 
-    public void createMonthInDays(){
-        LocalDate days = LocalDate.of(year, 2, 1);
-        StringBuilder mondayString = new StringBuilder("MO ");
-        StringBuilder tuesdayString = new StringBuilder("TU ");
-        StringBuilder wednesdayString = new StringBuilder("WE ");
-        StringBuilder thursdayString = new StringBuilder("TH ");
-        StringBuilder fridaydayString = new StringBuilder("FR ");
-        StringBuilder saturdayString = new StringBuilder("SA ");
-        StringBuilder sundayString = new StringBuilder("SU ");
-        for (int i = 1; i < days.lengthOfMonth(); i++) {
-            LocalDate showDays = LocalDate.of(year, 2, i);
-            String day = showDays.getDayOfWeek().toString();
-            String dayNumber = Integer.toString(showDays.getDayOfMonth());
-            if (showDays.getDayOfMonth()<10){
-                dayNumber = ("0"+dayNumber);
-            }
-                switch (day) {
-                case "MONDAY":
-                    if(showDays.getDayOfMonth() > 1){
-                        mondayString.append("  ");
-                    }
-                    mondayString.append(" ");
-                    mondayString.append(dayNumber);
-                    break;
-                case "TUESDAY":
-                    tuesdayString.append(" ");
-                    tuesdayString.append(dayNumber);
-                    break;
-                case "WEDNESDAY":
-                    wednesdayString.append(" ");
-                    wednesdayString.append(dayNumber);
-                    break;
-                case "THURSDAY":
-                    thursdayString.append(" ");
-                    thursdayString.append(dayNumber);
-                    break;
-                case "FRIDAY":
-                    fridaydayString.append(" ");
-                    fridaydayString.append(dayNumber);
-                    break;
-                case "SATURDAY":
-                    saturdayString.append(" ");
-                    saturdayString.append(dayNumber);
-                    break;
-                case "SUNDAY":
-                    sundayString.append(" ");
-                    sundayString.append(dayNumber);
-                    break;
-            }
+    public void createCalendar(){
+        int weeklength = 1;
+        for (int i = 1; i<= 1; i++){
+            weeklength = createMonth(i, weeklength);
         }
-        System.out.println(days.getMonth());
-        System.out.println(mondayString);
-        System.out.println(tuesdayString);
-        System.out.println(wednesdayString);
-        System.out.println(thursdayString);
-        System.out.println(fridaydayString);
-        System.out.println(saturdayString);
-        System.out.println(sundayString);
-        }
-        public void createCalendar(){
-            int weeklength = 1;
-            for (int i = 1; i<= 1; i++){
-                weeklength = createMonth(i, weeklength);
-            }
-        }
+    }
 
-        public int createMonth(int monthNumber, int weeklength){
+    public int createMonth(int monthNumber, int weeklength){
         LocalDate days = LocalDate.of(year, monthNumber, 1);
 
         ArrayList<String> mondayArray = new ArrayList<>();
