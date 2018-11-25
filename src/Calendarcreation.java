@@ -1,6 +1,10 @@
+import com.sun.xml.internal.bind.v2.TODO;
+
 import java.lang.reflect.Array;
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Calendarcreation {
     private int year;
@@ -15,20 +19,20 @@ public class Calendarcreation {
 
     public void seeMonths(){
         System.out.println("Months");
-        for(int i = 1; i< 12; i++) {
+        for(int i = 1; i<= 12; i++) {
             LocalDate month = LocalDate.of(year, i, 1);
             System.out.println(month.getMonth());
         }
     }
 
     public void createCalendar(){
-        int weeklength = 1;
-        for (int i = 1; i<= 1; i++){
-            weeklength = createMonth(i, weeklength);
+        int weekStart = 1;
+        for (int i = 1; i<= 12; i++){
+            createMonth(i, weekStart);
         }
     }
 
-    public int createMonth(int monthNumber, int weeklength){
+    public void createMonth(int monthNumber, int weekStart){
         LocalDate days = LocalDate.of(year, monthNumber, 1);
 
         ArrayList<String> mondayArray = new ArrayList<>();
@@ -46,9 +50,6 @@ public class Calendarcreation {
         ArrayList<String> sundayArray = new ArrayList<>();
         sundayArray.add("SU");
         ArrayList<Integer> weekArray = new ArrayList<>();
-        weekArray.add(00);
-
-
 
         for (int i = 1; i<=days.lengthOfMonth() ; i++) {
             LocalDate showDays = LocalDate.of(year, monthNumber, i);
@@ -93,6 +94,10 @@ public class Calendarcreation {
         printCalendar(dayArrays[4]);
         printCalendar(dayArrays[5]);
         printCalendar(dayArrays[6]);
+        System.out.println();
+
+        // stukje voor weken
+        /*
 
         int maxArraysize = 0;
         for (int j = 0 ; j<=(dayArrays[j].size()); j++){
@@ -100,14 +105,8 @@ public class Calendarcreation {
                 maxArraysize = dayArrays[j].size() - 1;
             }
         }
+        */
 
-
-        for(int k = weeklength; k<=(weeklength + (maxArraysize -1)); k++){
-            weekArray.add(k);
-        }
-
-        System.out.println(weekArray);
-        return weeklength + maxArraysize;
     }
 
     public void formatWeekArray(ArrayList[] dayArrays){
@@ -164,5 +163,6 @@ public class Calendarcreation {
         }
         String output = result.toString();
         System.out.println(output);
+
     }
 }
