@@ -12,19 +12,10 @@ public class Calendarcreation {
     public Calendarcreation(int year) {
         this.year = year;
     }
-
-    public int seeYear(){
-        return year;
-    }
-
-    public void seeMonths(){
-        System.out.println("Months");
-        for(int i = 1; i<= 12; i++) {
-            LocalDate month = LocalDate.of(year, i, 1);
-            System.out.println(month.getMonth());
-        }
-    }
-
+    /*
+    Method to create a calender by iterating over the 12 months
+    Weekstart is given with the purpose of adding weeknumbers.
+    */
     public void createCalendar(){
         int weekStart = 1;
         for (int i = 1; i<= 12; i++){
@@ -32,9 +23,15 @@ public class Calendarcreation {
         }
     }
 
+    /*
+    Each month is created separately within the calender
+     */
+
     public void createMonth(int monthNumber, int weekStart){
+        //Start the calendar by initializing a startdate
         LocalDate days = LocalDate.of(year, monthNumber, 1);
 
+        //Every day(monday to sunday) has its own String Arraylist for storing the daynumbers
         ArrayList<String> mondayArray = new ArrayList<>();
         mondayArray.add("MO");
         ArrayList<String> tuesdayArray = new ArrayList<>();
@@ -50,7 +47,9 @@ public class Calendarcreation {
         ArrayList<String> sundayArray = new ArrayList<>();
         sundayArray.add("SU");
         ArrayList<Integer> weekArray = new ArrayList<>();
-
+        /*
+        For Loop with a switch statements that says, if the day of the is a monday for example, store it in the monday arraylist
+        */
         for (int i = 1; i<=days.lengthOfMonth() ; i++) {
             LocalDate showDays = LocalDate.of(year, monthNumber, i);
             String day = showDays.getDayOfWeek().toString();
@@ -83,10 +82,15 @@ public class Calendarcreation {
                     break;
             }
         }
+
+        //Store all arraylists in another arraylist (multidimensional arraylist)
         ArrayList[] dayArrays = {mondayArray, tuesdayArray, wednesdayArray, thursdayArray, fridayArray, saturdayArray, sundayArray};
+        //Format the weekarrays for cases where the month does not start with a monday we have some nice black spaces
         formatWeekArray(dayArrays);
 
+        //print month of year
         System.out.println("  " + days.getMonth());
+        // Turn the arrays into strings so we get rid of those ugly block signs []
         printCalendar(dayArrays[0]);
         printCalendar(dayArrays[1]);
         printCalendar(dayArrays[2]);
@@ -109,6 +113,13 @@ public class Calendarcreation {
 
     }
 
+
+    /*
+    Formatting is done by checking the days which are in the first elements of the week arraylists
+    The second element of the array decides if there is need for some black space or not.
+    For example; if the month does not start with a monday, the second element is always black
+    and is therefore filled with spaces.
+     */
     public void formatWeekArray(ArrayList[] dayArrays){
         for (int i = 0; i<= dayArrays.length - 1; i++) {
             String day = dayArrays[i].get(0).toString();
@@ -154,6 +165,7 @@ public class Calendarcreation {
         }
     }
 
+    //method for turning the arrays into strings
     public void printCalendar(ArrayList dayArray){
         StringBuilder result = new StringBuilder(dayArray.size());
 
