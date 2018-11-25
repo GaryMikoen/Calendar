@@ -21,40 +21,6 @@ public class Calendarcreation {
         }
     }
 
-    public void seeDays() {
-        System.out.println("Days");
-        LocalDate days = LocalDate.of(year, 1, 1);
-
-        ArrayList<String> mondayArray = new ArrayList<>();
-        mondayArray.add("Monday");
-        ArrayList<String> tuesdayArray = new ArrayList<>();
-        tuesdayArray.add("Tuesday");
-        ArrayList<String> wednesdayArray = new ArrayList<>();
-        wednesdayArray.add("Wednesday");
-        String s1 = "Thursday";
-
-        StringBuilder thursdayString = new StringBuilder(s1);
-        for (int i = 1; i < days.lengthOfMonth(); i++) {
-            LocalDate showDays = LocalDate.of(year, 1, i);
-            System.out.println(showDays.getDayOfWeek());
-            System.out.println(showDays.getDayOfMonth());
-            System.out.println(showDays.getDayOfWeek().toString());
-            if (showDays.getDayOfWeek().toString().equals("MONDAY")) {
-                mondayArray.add(Integer.toString(showDays.getDayOfMonth()));
-            } else if (showDays.getDayOfWeek().toString().equals("TUESDAY")) {
-                tuesdayArray.add(Integer.toString(showDays.getDayOfMonth()));
-            } else if (showDays.getDayOfWeek().toString().equals("WEDNESDAY")) {
-                wednesdayArray.add(Integer.toString(showDays.getDayOfMonth()));
-            } else if (showDays.getDayOfWeek().toString().equals("THURSDAY")) {
-                thursdayString.append("  ");
-                thursdayString.append(Integer.toString(showDays.getDayOfMonth()));
-            }
-            System.out.println(mondayArray);
-            System.out.println(tuesdayArray);
-            System.out.print(wednesdayArray);
-            System.out.println("\n" + thursdayString);
-        }
-    }
     public void createMonthInDays(){
         LocalDate days = LocalDate.of(year, 2, 1);
         StringBuilder mondayString = new StringBuilder("MO ");
